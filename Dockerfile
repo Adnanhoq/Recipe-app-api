@@ -2,7 +2,7 @@ FROM python:3.9-alpine3.13
 LABEL maintainer="adnan.com"
 
 ENV PYTHONUNBUFFERED 1
-RUN apk add -u zlib-dev jpeg-dev gcc musl-dev
+RUN apk add -u zlib-dev jpeg-dev gcc musl-dev 
 
 COPY ./requirements.txt /tmp/requirements.txt
 COPY ./requirements.dev.txt /tmp/requirements.dev.txt
@@ -26,6 +26,8 @@ RUN python -m venv /py && \
         --disabled-password \
         --no-create-home \
         django-user
+    
+RUN pip install psycopg2
 
 ENV PATH="/py/bin:$PATH"
 
